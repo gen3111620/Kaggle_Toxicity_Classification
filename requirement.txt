@@ -1,7 +1,7 @@
 tqdm
 keras
 torch
-bumpy
+numpy
 pandas
 sklearn
 flashtext
