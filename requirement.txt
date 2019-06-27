@@ -1,0 +1,8 @@
+tqdm
+keras
+torch
+bumpy
+pandas
+sklearn
+flashtext
+pytorch-pretrained-bert
