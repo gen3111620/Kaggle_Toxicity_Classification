@@ -55,10 +55,7 @@ def content_preprocessing(text, kp, statistics_features=False):
   ### if statistics_features is True, will statstics the sentence features
   if statistics_features is True:
     emoji_num = len(EMOJI_RE.findall(text))
-    swear_words_num = statistics_swear_words(text, SWEAR_WORDS)
-    upper_count = statistics_upper_words(text)
-    characters_num = statistics_characters_nums(text)
-    unique_words_num = statistics_unique_words(text)
+    
     
 
   text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'url', text)
@@ -69,6 +66,10 @@ def content_preprocessing(text, kp, statistics_features=False):
   text = re.sub(r'\s{2,}', ' ', text)
 
   if statistics_features:
+    swear_words_num = statistics_swear_words(text, SWEAR_WORDS)
+    upper_count = statistics_upper_words(text)
+    characters_num = statistics_characters_nums(text)
+    unique_words_num = statistics_unique_words(text)
     return text, len(text.split()), emoji_num, swear_words_num, upper_count, characters_num, unique_words_num
 
   return text
