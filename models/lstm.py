@@ -60,7 +60,7 @@ class SpatialDropout(nn.Module):
 
 class NeuralNet(nn.Module):
 
-  def __init__(self, embedding_matrix, num_unit, num_layers=1):
+  def __init__(self, embedding_matrix, num_unit, max_seq_len, num_layers=1):
     super(NeuralNet, self).__init__()
     self.max_feature = embedding_matrix.shape[0]
     self.embedding_size = embedding_matrix.shape[1]
@@ -70,7 +70,7 @@ class NeuralNet(nn.Module):
     self.embedding_dropout = SpatialDropout(0.3)
     self.lstm1 = nn.LSTM(self.embedding_size, num_unit, num_layers=num_layers, bidirectional=True, batch_first=True)
     self.lstm2 = nn.LSTM(num_unit*2, int(num_unit/2), num_layers=num_layers, bidirectional=True, batch_first=True)
-    self.attention = Attention(num_unit, MAX_LEN)
+    self.attention = Attention(num_unit, max_seq_len)
     self.linear1 = nn.Linear(num_unit*3, num_unit)
     self.linear2 = nn.Linear(num_unit*3, num_unit)
     self.linear_out = nn.Linear(num_unit, 1)
@@ -106,9 +106,8 @@ class NeuralNet(nn.Module):
 
 ### test code
 if __name__ == '__main__':
-  MAX_LEN = 220
   embedding_matrix = np.random.random([1000,300])
-  net = NeuralNet(embedding_matrix, 128)
+  net = NeuralNet(embedding_matrix, 128, 220)
   print(net)
 
 
