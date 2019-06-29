@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 import numpy as np
 from pytorch_pretrained_bert import BertTokenizer, BertForSequenceClassification, BertAdam, OpenAIAdam
 
@@ -110,7 +111,7 @@ if __name__ == '__main__':
   MAX_LEN = 220
   accumulation_steps = 1
 
-  sentences = ['motherfuckeraif this is a test ! ', 'i am a robot', 'i want to get silver']
+  sentences = ['motherfuckeraif this is a test ! ', 'i am a robot', 'i want to silver']
   bertClassifier = bertClassifier('bert-base-uncased', 1, 'BertAdam', sentences, MAX_LEN)
 
   print('sentences convert')
@@ -118,7 +119,7 @@ if __name__ == '__main__':
   print(x_train)
   print('---'*30)
 
-  print('load bert network architecture from pretrained model')
+  print('load bert network architecture and get init weights from pretrained model')
   net = bertClassifier.buildBertNet()
   print(net)
   print('---'*30)
